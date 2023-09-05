@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/authOperations';
 import Layout from 'layouts/Layout';
-import useAuth from 'hooks/useAuth';
+// import useAuth from 'hooks/useAuth';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -12,7 +12,7 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  // const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
