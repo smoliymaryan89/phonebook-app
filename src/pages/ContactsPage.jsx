@@ -1,11 +1,19 @@
-import ContactForm from 'components/ContactForm/ContactForm';
-import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchContacts } from 'redux/contacts/contactsOperations';
+import ContactsLayout from 'layouts/ContactsLayout';
 
 const ContactsPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
-    <div>
-      <ContactForm />
-    </div>
+    <>
+      <ContactsLayout />
+    </>
   );
 };
 
