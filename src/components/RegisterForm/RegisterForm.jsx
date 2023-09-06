@@ -4,6 +4,29 @@ import { useFormik } from 'formik';
 import { register } from 'redux/auth/authOperations';
 import * as yup from 'yup';
 
+const validationSchema = yup.object({
+  name: yup
+    .string()
+    .matches(/^[A-Za-z\s'-]+$/, 'Please enter a valid name')
+    .required('Name is required'),
+  email: yup
+    .string()
+    .email('Invalid email address')
+    .required('Email is required!'),
+  password: yup
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/,
+      'Password must contain at least one letter, one number, and one special character'
+    )
+    .required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('Confirm password is required'),
+});
+
 const RegisterForm = () => {
   const dispatch = useDispatch();
 
@@ -14,29 +37,7 @@ const RegisterForm = () => {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: yup.object({
-      name: yup
-        .string()
-        .matches(/^[A-Za-z\s'-]+$/, 'Please enter a valid name')
-        .required('Name is required'),
-      email: yup
-        .string()
-        .email('Invalid email address')
-        .required('Email is required!'),
-      password: yup
-        .string()
-        .min(8, 'Password must be at least 8 characters')
-        .matches(
-          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/,
-          'Password must contain at least one letter, one number, and one special character'
-        )
-        .required('Password is required'),
-      confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('password'), null], 'Passwords must match')
-        .required('Confirm password is required'),
-    }),
-
+    validationSchema,
     onSubmit: ({ name, email, password }) => {
       dispatch(register({ name, email, password }));
       formik.resetForm();
