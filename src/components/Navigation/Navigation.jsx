@@ -1,3 +1,4 @@
+import { Link, List, ListItem } from '@chakra-ui/react';
 import useAuth from 'hooks/useAuth';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -7,16 +8,20 @@ const Navigation = () => {
 
   return (
     <nav>
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
+      <List>
+        <ListItem listStyleType="none">
+          <Link as={NavLink} to="/">
+            Home
+          </Link>
+        </ListItem>
         {isLoggedIn && (
-          <li>
-            <NavLink to="/contacts">Contacts</NavLink>
-          </li>
+          <ListItem listStyleType="none">
+            <Link as={NavLink} to="/contacts">
+              Contacts
+            </Link>
+          </ListItem>
         )}
-      </ul>
+      </List>
     </nav>
   );
 };

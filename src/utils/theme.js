@@ -18,6 +18,13 @@ const theme = extendTheme({
         w: 'full',
       },
     },
+    Link: {
+      baseStyle: {
+        fontWeight: 600,
+        ':hover': { textDecoration: 'none', color: 'purple.600' },
+        _activeLink: { color: 'purple.600' },
+      },
+    },
   },
 });
 

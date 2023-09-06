@@ -1,16 +1,21 @@
+import { Link, List, ListItem } from '@chakra-ui/react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const AuthNav = () => {
   return (
-    <ul>
-      <li>
-        <NavLink to="/register">Register</NavLink>
-      </li>
-      <li>
-        <NavLink to="/login">Log in</NavLink>
-      </li>
-    </ul>
+    <List display="flex" ml="auto" gap="30px">
+      <ListItem listStyleType="none">
+        <Link as={NavLink} to="/register">
+          Register
+        </Link>
+      </ListItem>
+      <ListItem listStyleType="none">
+        <Link as={NavLink} to="/login">
+          Log in
+        </Link>
+      </ListItem>
+    </List>
   );
 };
 

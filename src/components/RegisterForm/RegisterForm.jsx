@@ -75,9 +75,6 @@ const RegisterForm = () => {
             />
 
             <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
-            {/* {formik.touched.name && formik.errors.name ? (
-              <div>{formik.errors.name}</div>
-            ) : null} */}
           </FormControl>
 
           <FormControl
@@ -96,10 +93,6 @@ const RegisterForm = () => {
               focusBorderColor="purple.400"
             />
             <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-
-            {/* {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null} */}
           </FormControl>
 
           <FormControl
@@ -119,10 +112,6 @@ const RegisterForm = () => {
             />
 
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-
-            {/* {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null} */}
           </FormControl>
 
           <FormControl
@@ -143,10 +132,6 @@ const RegisterForm = () => {
               focusBorderColor="purple.400"
             />
             <FormErrorMessage>{formik.errors.confirmPassword}</FormErrorMessage>
-
-            {/* {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-              <div>{formik.errors.confirmPassword}</div>
-            ) : null} */}
           </FormControl>
 
           <Button type="submit">Sign up</Button>
