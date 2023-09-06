@@ -134,7 +134,9 @@ const RegisterForm = () => {
             <FormErrorMessage>{formik.errors.confirmPassword}</FormErrorMessage>
           </FormControl>
 
-          <Button type="submit">Sign up</Button>
+          <Button type="submit" w="full">
+            Sign up
+          </Button>
         </VStack>
       </Box>
     </Flex>

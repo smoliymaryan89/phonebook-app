@@ -85,7 +85,9 @@ const LoginForm = () => {
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
 
-        <Button type="submit">Login</Button>
+        <Button type="submit" w="full">
+          Login
+        </Button>
       </VStack>
     </Box>
   );
