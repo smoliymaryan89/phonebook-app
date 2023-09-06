@@ -13,7 +13,7 @@ const Filter = () => {
   };
 
   return (
-    <Box w="300px" p="0px 40px 40px 40px">
+    <Box p="0px 40px 40px 40px">
       <FormControl>
         <FormLabel fontWeight="400">
           Find contacts by name and phone number
@@ -24,6 +24,7 @@ const Filter = () => {
           variant="outline"
           value={filter}
           onChange={handleFilter}
+          w={300}
         />
       </FormControl>
     </Box>

@@ -1,7 +1,10 @@
 import React from 'react';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/contacts/contactsSelectors';
+import {
+  selectContacts,
+  selectIsLoading,
+} from 'redux/contacts/contactsSelectors';
 import { useFormik } from 'formik';
 import { addContact } from 'redux/contacts/contactsOperations';
 import {
@@ -36,6 +39,8 @@ const validationSchema = yup.object({
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
+  console.log(isLoading);
 
   const formik = useFormik({
     initialValues: {
@@ -53,7 +58,7 @@ const ContactForm = () => {
   });
 
   return (
-    <Box mb={6}>
+    <Box mb={6} w={300}>
       <VStack as="form" spacing={4} noValidate onSubmit={formik.handleSubmit}>
         <FormControl
           isRequired
@@ -90,7 +95,9 @@ const ContactForm = () => {
           <FormErrorMessage>{formik.errors.number}</FormErrorMessage>
         </FormControl>
 
-        <Button type="submit">Add contact</Button>
+        <Button type="submit" isLoading={isLoading}>
+          Add contact
+        </Button>
       </VStack>
     </Box>
   );
