@@ -14,9 +14,10 @@ const theme = extendTheme({
         variant: 'solid',
         colorScheme: 'purple',
       },
-      baseStyle: {
-        w: 'full',
-      },
+      // baseStyle: {
+      //   w: 'full',
+
+      // },
     },
     Link: {
       baseStyle: {

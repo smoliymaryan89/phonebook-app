@@ -1,3 +1,4 @@
+import { Box, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter } from 'redux/contacts/contactsSelectors';
@@ -12,10 +13,20 @@ const Filter = () => {
   };
 
   return (
-    <label>
-      <p>Find contacts by name</p>
-      <input type="text" value={filter} onChange={handleFilter} />
-    </label>
+    <Box w="300px" p="0px 40px 40px 40px">
+      <FormControl>
+        <FormLabel fontWeight="400">
+          Find contacts by name and phone number
+        </FormLabel>
+        <Input
+          type="text"
+          focusBorderColor="purple.400"
+          variant="outline"
+          value={filter}
+          onChange={handleFilter}
+        />
+      </FormControl>
+    </Box>
   );
 };
 

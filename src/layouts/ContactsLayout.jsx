@@ -1,18 +1,30 @@
+import React from 'react';
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
-import React from 'react';
+import { Box, Heading } from '@chakra-ui/react';
 
 const ContactsLayout = () => {
   return (
-    <>
-      <h2>Phonebook</h2>
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      pt={20}
+      bg="white"
+    >
+      <Heading as="h2" fontSize={27} fontWeight={700} mb={6} textAlign="center">
+        Phonebook
+      </Heading>
       <ContactForm />
 
-      <h2>Contacts</h2>
+      <Heading as="h2" fontSize={27} fontWeight={700} mb={6} textAlign="center">
+        Contacts
+      </Heading>
       <Filter />
       <ContactList />
-    </>
+    </Box>
   );
 };
 
