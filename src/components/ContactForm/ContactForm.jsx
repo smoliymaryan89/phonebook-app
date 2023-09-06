@@ -4,6 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/contactsSelectors';
 import { useFormik } from 'formik';
 import { addContact } from 'redux/contacts/contactsOperations';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  Input,
+  VStack,
+} from '@chakra-ui/react';
 
 const validationSchema = yup.object({
   name: yup
@@ -17,14 +25,12 @@ const validationSchema = yup.object({
   number: yup
     .string()
     .required('Required!')
-    .matches(
-      /^\+?\d{1,4}[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
-      {
-        message:
-          'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
-        excludeEmptyString: true,
-      }
-    ),
+    .matches(/^(\+)?[\d\s\-()]+$/, {
+      message:
+        'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
+      excludeEmptyString: true,
+    })
+    .min(5, 'Phone number should be at least 5 characters long.'),
 });
 
 const ContactForm = () => {
@@ -47,35 +53,46 @@ const ContactForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div>
-        <input
-          type="text"
-          name="name"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.name}
-        />
-        {formik.touched.name && formik.errors.name ? (
-          <div>{formik.errors.name}</div>
-        ) : null}
-      </div>
+    <Box bg="white" p={10} rounded="md" w={300} boxShadow="xl">
+      <VStack as="form" spacing={4} noValidate onSubmit={formik.handleSubmit}>
+        <FormControl
+          isRequired
+          isInvalid={formik.touched.name && formik.errors.name}
+        >
+          <Input
+            type="text"
+            name="name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+            focusBorderColor="purple.400"
+            variant="outline"
+            placeholder="Enter name"
+          />
 
-      <div>
-        <input
-          type="text"
-          name="number"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.number}
-        />
-        {formik.touched.number && formik.errors.number ? (
-          <div>{formik.errors.number}</div>
-        ) : null}
-      </div>
+          <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
+        </FormControl>
 
-      <button type="submit">Add contact</button>
-    </form>
+        <FormControl
+          isRequired
+          isInvalid={formik.touched.number && formik.errors.number}
+        >
+          <Input
+            type="text"
+            name="number"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.number}
+            focusBorderColor="purple.400"
+            variant="outline"
+            placeholder="Enter phone number"
+          />
+          <FormErrorMessage>{formik.errors.number}</FormErrorMessage>
+        </FormControl>
+
+        <Button type="submit">Add contact</Button>
+      </VStack>
+    </Box>
   );
 };
 
