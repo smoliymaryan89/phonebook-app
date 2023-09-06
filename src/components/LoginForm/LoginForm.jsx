@@ -4,6 +4,11 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { login } from 'redux/auth/authOperations';
 
+const validationSchema = yup.object({
+  email: yup.string().required('Please enter your email address.'),
+  password: yup.string().required('Please enter your password.'),
+});
+
 const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -12,11 +17,7 @@ const LoginForm = () => {
       email: '',
       password: '',
     },
-    validationSchema: yup.object({
-      email: yup.string().required('Please enter your email address.'),
-      password: yup.string().required('Please enter your password.'),
-    }),
-
+    validationSchema,
     onSubmit: value => {
       dispatch(login(value));
       formik.resetForm();
