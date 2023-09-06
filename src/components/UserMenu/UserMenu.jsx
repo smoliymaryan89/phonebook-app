@@ -1,3 +1,4 @@
+import { Box, Button } from '@chakra-ui/react';
 import useAuth from 'hooks/useAuth';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -8,12 +9,17 @@ const UserMenu = () => {
   const { user } = useAuth();
 
   return (
-    <div>
+    <Box display="flex" gap="30px" ml="auto">
       <p>{user.name}</p>
-      <button type="button" onClick={() => dispatch(logOut())}>
+      <Button
+        variant="link"
+        color="inherit"
+        _hover={{ textDecoration: 'none', color: 'purple.600' }}
+        onClick={() => dispatch(logOut())}
+      >
         Logout
-      </button>
-    </div>
+      </Button>
+    </Box>
   );
 };
 

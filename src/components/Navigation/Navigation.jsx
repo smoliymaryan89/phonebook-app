@@ -8,7 +8,10 @@ const Navigation = () => {
 
   return (
     <nav>
-      <List>
+      <List
+        display={isLoggedIn ? 'flex' : 'initial'}
+        gap={isLoggedIn ? '30px' : 'initial'}
+      >
         <ListItem listStyleType="none">
           <Link as={NavLink} to="/">
             Home
