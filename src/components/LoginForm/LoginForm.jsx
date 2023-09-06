@@ -3,9 +3,22 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { login } from 'redux/auth/authOperations';
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  VStack,
+} from '@chakra-ui/react';
 
 const validationSchema = yup.object({
-  email: yup.string().required('Please enter your email address.'),
+  email: yup
+    .string()
+    .email('Enter valid email')
+    .required('Please enter your email address.'),
   password: yup.string().required('Please enter your password.'),
 });
 
@@ -25,36 +38,51 @@ const LoginForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label>
-        Email
-        <input
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-        />
-      </label>
-      {formik.touched.email && formik.errors.email ? (
-        <div>{formik.errors.email}</div>
-      ) : null}
+    <Flex align="center" justify="center" h="100vh">
+      <Box bg="white" p={10} rounded="md" w={500} boxShadow="xl">
+        <VStack as="form" spacing={4} noValidate onSubmit={formik.handleSubmit}>
+          <FormControl
+            isRequired
+            mb={3}
+            isInvalid={formik.touched.email && formik.errors.email}
+          >
+            <FormLabel>Email</FormLabel>
+            <Input
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+              variant="filled"
+              focusBorderColor="purple.400"
+            />
+            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+          </FormControl>
 
-      <label>
-        Password
-        <input
-          name="password"
-          type="password"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-        />
-      </label>
-      {formik.touched.password && formik.errors.password ? (
-        <div>{formik.errors.password}</div>
-      ) : null}
-      <button type="submit">Sign in</button>
-    </form>
+          <FormControl
+            isRequired
+            mb={5}
+            isInvalid={formik.touched.password && formik.errors.password}
+          >
+            <FormLabel>Password</FormLabel>
+            <Input
+              name="password"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
+              variant="filled"
+              focusBorderColor="purple.400"
+            />
+            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+          </FormControl>
+
+          <Button variant="solid" colorScheme="purple" w="full" type="submit">
+            Login
+          </Button>
+        </VStack>
+      </Box>
+    </Flex>
   );
 };
 
