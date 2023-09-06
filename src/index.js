@@ -5,11 +5,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
 import App from 'components/App';
+import theme from 'utils/theme';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Provider store={store}>
         <BrowserRouter basename="/goit-react-hw-08-phonebook">
           <App />
