@@ -77,9 +77,7 @@ const LoginForm = () => {
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           </FormControl>
 
-          <Button variant="solid" colorScheme="purple" w="full" type="submit">
-            Login
-          </Button>
+          <Button type="submit">Login</Button>
         </VStack>
       </Box>
     </Flex>

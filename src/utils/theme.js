@@ -8,6 +8,17 @@ const theme = extendTheme({
       },
     }),
   },
+  components: {
+    Button: {
+      defaultProps: {
+        variant: 'solid',
+        colorScheme: 'purple',
+      },
+      baseStyle: {
+        w: 'full',
+      },
+    },
+  },
 });
 
 export default theme;
