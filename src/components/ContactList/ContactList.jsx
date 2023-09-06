@@ -1,4 +1,4 @@
-import { Box, Button, List, ListItem, Text } from '@chakra-ui/react';
+import { Box, Button, List, ListItem, Text, useToast } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contactsOperations';
@@ -6,7 +6,7 @@ import { selectFilteredContacts } from 'redux/contacts/contactsSelectors';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-
+  const toast = useToast();
   const filteredContacts = useSelector(selectFilteredContacts);
 
   return (
@@ -26,7 +26,16 @@ const ContactList = () => {
             <Button
               ml="auto"
               size="sm"
-              onClick={() => dispatch(deleteContact(id))}
+              onClick={() => {
+                toast({
+                  description: 'You have successfully deleted the contact!',
+                  status: 'success',
+                  duration: 3000,
+                  isClosable: true,
+                  position: 'top',
+                });
+                dispatch(deleteContact(id));
+              }}
               type="button"
               _hover={{ bg: 'red' }}
             >

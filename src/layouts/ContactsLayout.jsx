@@ -11,7 +11,6 @@ const ContactsLayout = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      pt={20}
       bg="white"
       h="100vh"
     >

@@ -1,10 +1,7 @@
 import React from 'react';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectContacts,
-  selectIsLoading,
-} from 'redux/contacts/contactsSelectors';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
 import { useFormik } from 'formik';
 import { addContact } from 'redux/contacts/contactsOperations';
 import {
@@ -14,6 +11,7 @@ import {
   FormErrorMessage,
   Input,
   VStack,
+  useToast,
 } from '@chakra-ui/react';
 
 const validationSchema = yup.object({
@@ -39,8 +37,7 @@ const validationSchema = yup.object({
 const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
-  console.log(isLoading);
+  const toast = useToast();
 
   const formik = useFormik({
     initialValues: {
@@ -50,9 +47,26 @@ const ContactForm = () => {
     validationSchema,
     onSubmit: data => {
       const isDuplicate = contacts.find(contact => contact.name === data.name);
-      if (isDuplicate) return alert(`${data.name} is already in contacts.`);
 
-      dispatch(addContact(data));
+      if (isDuplicate) {
+        return toast({
+          description: `${data.name} is already in contacts!`,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+          position: 'top',
+        });
+      } else {
+        dispatch(addContact(data));
+        toast({
+          description: 'New contact successfully added!',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top',
+        });
+      }
+
       formik.resetForm();
     },
   });
@@ -81,6 +95,7 @@ const ContactForm = () => {
         <FormControl
           isRequired
           isInvalid={formik.touched.number && formik.errors.number}
+          mb={3}
         >
           <Input
             type="text"
@@ -95,9 +110,7 @@ const ContactForm = () => {
           <FormErrorMessage>{formik.errors.number}</FormErrorMessage>
         </FormControl>
 
-        <Button type="submit" isLoading={isLoading}>
-          Add contact
-        </Button>
+        <Button type="submit">Add contact</Button>
       </VStack>
     </Box>
   );
