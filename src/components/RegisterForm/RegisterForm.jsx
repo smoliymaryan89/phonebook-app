@@ -6,7 +6,6 @@ import * as yup from 'yup';
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -55,91 +54,99 @@ const RegisterForm = () => {
   });
 
   return (
-    <Flex align="center" justify="center" h="100vh">
-      <Box bg="white" p={10} rounded="md" w={500} boxShadow="xl">
-        <VStack as="form" spacing={4} noValidate onSubmit={formik.handleSubmit}>
-          <FormControl
-            isRequired
-            mb={2}
-            isInvalid={formik.touched.name && formik.errors.name}
-          >
-            <FormLabel>Name</FormLabel>
-            <Input
-              name="name"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.name}
-              variant="filled"
-              focusBorderColor="purple.400"
-            />
+    <Box
+      bg="white"
+      p={10}
+      rounded="md"
+      w={500}
+      boxShadow="xl"
+      position={'absolute'}
+      top={'50%'}
+      left={'50%'}
+      transform="translate(-50%, 25%)"
+    >
+      <VStack as="form" spacing={4} noValidate onSubmit={formik.handleSubmit}>
+        <FormControl
+          isRequired
+          mb={2}
+          isInvalid={formik.touched.name && formik.errors.name}
+        >
+          <FormLabel>Name</FormLabel>
+          <Input
+            name="name"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+            variant="filled"
+            focusBorderColor="purple.400"
+          />
 
-            <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
-          </FormControl>
+          <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
+        </FormControl>
 
-          <FormControl
-            isRequired
-            mb={2}
-            isInvalid={formik.touched.email && formik.errors.email}
-          >
-            <FormLabel>Email</FormLabel>
-            <Input
-              name="email"
-              type="email"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-              variant="filled"
-              focusBorderColor="purple.400"
-            />
-            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-          </FormControl>
+        <FormControl
+          isRequired
+          mb={2}
+          isInvalid={formik.touched.email && formik.errors.email}
+        >
+          <FormLabel>Email</FormLabel>
+          <Input
+            name="email"
+            type="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            variant="filled"
+            focusBorderColor="purple.400"
+          />
+          <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+        </FormControl>
 
-          <FormControl
-            isRequired
-            mb={2}
-            isInvalid={formik.touched.password && formik.errors.password}
-          >
-            <FormLabel>Password</FormLabel>
-            <Input
-              name="password"
-              type="password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-              variant="filled"
-              focusBorderColor="purple.400"
-            />
+        <FormControl
+          isRequired
+          mb={2}
+          isInvalid={formik.touched.password && formik.errors.password}
+        >
+          <FormLabel>Password</FormLabel>
+          <Input
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+            variant="filled"
+            focusBorderColor="purple.400"
+          />
 
-            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-          </FormControl>
+          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+        </FormControl>
 
-          <FormControl
-            isRequired
-            mb={3}
-            isInvalid={
-              formik.touched.confirmPassword && formik.errors.confirmPassword
-            }
-          >
-            <FormLabel>Confirm password</FormLabel>
-            <Input
-              name="confirmPassword"
-              type="password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.confirmPassword}
-              variant="filled"
-              focusBorderColor="purple.400"
-            />
-            <FormErrorMessage>{formik.errors.confirmPassword}</FormErrorMessage>
-          </FormControl>
+        <FormControl
+          isRequired
+          mb={3}
+          isInvalid={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+          }
+        >
+          <FormLabel>Confirm password</FormLabel>
+          <Input
+            name="confirmPassword"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.confirmPassword}
+            variant="filled"
+            focusBorderColor="purple.400"
+          />
+          <FormErrorMessage>{formik.errors.confirmPassword}</FormErrorMessage>
+        </FormControl>
 
-          <Button type="submit" w="full">
-            Sign up
-          </Button>
-        </VStack>
-      </Box>
-    </Flex>
+        <Button type="submit" w="full">
+          Sign up
+        </Button>
+      </VStack>
+    </Box>
   );
 };
 
