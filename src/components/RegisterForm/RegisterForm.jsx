@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { register } from 'redux/auth/authOperations';
@@ -11,8 +11,11 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   VStack,
 } from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 const validationSchema = yup.object({
   name: yup
@@ -39,6 +42,12 @@ const validationSchema = yup.object({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const toggleShowPassword = () => setShowPassword(prev => !prev);
+  const toggleShowConfirmPassword = () => setShowConfirmPassword(prev => !prev);
 
   const formik = useFormik({
     initialValues: {
@@ -101,15 +110,36 @@ const RegisterForm = () => {
             isInvalid={formik.touched.password && formik.errors.password}
           >
             <FormLabel>Password</FormLabel>
-            <Input
-              name="password"
-              type="password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-              variant="filled"
-              focusBorderColor="purple.400"
-            />
+            <InputGroup>
+              <Input
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                variant="filled"
+                focusBorderColor="purple.400"
+              />
+              <InputRightElement>
+                <Button
+                  bg="transparent"
+                  _hover={{ bg: 'none' }}
+                  onClick={toggleShowPassword}
+                >
+                  {showPassword ? (
+                    <ViewOffIcon
+                      color="purple.500"
+                      _hover={{ color: 'purple.600' }}
+                    />
+                  ) : (
+                    <ViewIcon
+                      color="purple.500"
+                      _hover={{ color: 'purple.600' }}
+                    />
+                  )}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
 
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           </FormControl>
@@ -122,15 +152,36 @@ const RegisterForm = () => {
             }
           >
             <FormLabel>Confirm password</FormLabel>
-            <Input
-              name="confirmPassword"
-              type="password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.confirmPassword}
-              variant="filled"
-              focusBorderColor="purple.400"
-            />
+            <InputGroup>
+              <Input
+                name="confirmPassword"
+                type={showConfirmPassword ? 'text' : 'password'}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.confirmPassword}
+                variant="filled"
+                focusBorderColor="purple.400"
+              />
+              <InputRightElement>
+                <Button
+                  bg="transparent"
+                  _hover={{ bg: 'none' }}
+                  onClick={toggleShowConfirmPassword}
+                >
+                  {showConfirmPassword ? (
+                    <ViewOffIcon
+                      color="purple.500"
+                      _hover={{ color: 'purple.600' }}
+                    />
+                  ) : (
+                    <ViewIcon
+                      color="purple.500"
+                      _hover={{ color: 'purple.600' }}
+                    />
+                  )}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
             <FormErrorMessage>{formik.errors.confirmPassword}</FormErrorMessage>
           </FormControl>
 
