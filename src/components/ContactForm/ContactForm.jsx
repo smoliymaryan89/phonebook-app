@@ -87,6 +87,7 @@ const ContactForm = () => {
             focusBorderColor="purple.400"
             variant="outline"
             placeholder="Enter name"
+            borderColor="#44337A"
           />
 
           <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
@@ -106,6 +107,7 @@ const ContactForm = () => {
             focusBorderColor="purple.400"
             variant="outline"
             placeholder="Enter phone number"
+            borderColor="#44337A"
           />
           <FormErrorMessage>{formik.errors.number}</FormErrorMessage>
         </FormControl>

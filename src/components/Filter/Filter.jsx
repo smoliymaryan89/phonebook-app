@@ -25,6 +25,7 @@ const Filter = () => {
           value={filter}
           onChange={handleFilter}
           w={300}
+          borderColor="#44337A"
         />
       </FormControl>
     </Box>
