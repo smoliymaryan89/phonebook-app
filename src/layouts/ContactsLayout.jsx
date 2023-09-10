@@ -11,7 +11,6 @@ const ContactsLayout = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      bg="white"
       h="100vh"
     >
       <Heading as="h2" fontSize={27} fontWeight={700} mb={6} textAlign="center">
