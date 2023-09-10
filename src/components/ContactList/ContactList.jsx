@@ -22,7 +22,13 @@ const ContactList = () => {
   const isLoading = useSelector(selectIsLoading);
 
   return isLoading ? (
-    <Spinner />
+    <Spinner
+      size="xl"
+      emptyColor="purple.600"
+      thickness="5px"
+      color="purple.100"
+      speed="0.65s"
+    />
   ) : (
     <List maxW="600px" p="0px 40px 40px 40px">
       {filteredContacts.map(({ id, name, number }) => (
