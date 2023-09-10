@@ -1,15 +1,29 @@
-import { Box, Button, List, ListItem, Text, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  Text,
+  useToast,
+  Spinner,
+} from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contactsOperations';
-import { selectFilteredContacts } from 'redux/contacts/contactsSelectors';
+import {
+  selectFilteredContacts,
+  selectIsLoading,
+} from 'redux/contacts/contactsSelectors';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const filteredContacts = useSelector(selectFilteredContacts);
+  const isLoading = useSelector(selectIsLoading);
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <List maxW="600px" p="0px 40px 40px 40px">
       {filteredContacts.map(({ id, name, number }) => (
         <ListItem _notLast={{ mb: '10px' }} key={id}>
@@ -18,7 +32,7 @@ const ContactList = () => {
               <Text as="span" fontSize="20px">
                 {name}
               </Text>
-              :{' '}
+              :
               <Text as="span" fontSize="20px">
                 {number}
               </Text>
