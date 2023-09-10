@@ -30,19 +30,19 @@ const ContactList = () => {
       speed="0.65s"
     />
   ) : (
-    <List maxW="600px" p="0px 40px 40px 40px">
+    <List>
       {filteredContacts.map(({ id, name, number }) => (
-        <ListItem _notLast={{ mb: '10px' }} key={id}>
+        <ListItem _notLast={{ mb: '12px' }} key={id}>
           <Box display="flex" alignItems="center" gap="25px">
-            <Text>
-              <Text as="span" fontSize="20px">
+            <Box>
+              <Text as="span" fontSize="18px" mr={1}>
                 {name}
               </Text>
               :
-              <Text as="span" fontSize="20px">
+              <Text as="span" fontSize="18px" ml={3}>
                 {number}
               </Text>
-            </Text>
+            </Box>
             <Button
               ml="auto"
               size="sm"

@@ -13,7 +13,7 @@ const Filter = () => {
   };
 
   return (
-    <Box p="0px 40px 40px 40px">
+    <Box mb={5}>
       <FormControl>
         <FormLabel fontWeight="400">
           Find contacts by name and phone number

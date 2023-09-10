@@ -72,7 +72,7 @@ const ContactForm = () => {
   });
 
   return (
-    <Box mb={6} w={300}>
+    <Box mb={10} w={300}>
       <VStack as="form" spacing={4} noValidate onSubmit={formik.handleSubmit}>
         <FormControl
           isRequired
