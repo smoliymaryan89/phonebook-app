@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import { login } from 'redux/auth/authOperations';
+import * as yup from 'yup';
+import useAuth from 'hooks/useAuth';
 import {
   Box,
   Button,
@@ -11,6 +12,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Text,
   VStack,
 } from '@chakra-ui/react';
 
@@ -24,6 +26,7 @@ const validationSchema = yup.object({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const { error } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -40,6 +43,11 @@ const LoginForm = () => {
   return (
     <Flex justify="center" align="center" h="75vh">
       <Box bg="white" p={10} rounded="md" w={500} boxShadow="xl">
+        {error === 400 && (
+          <Text as="p" color="red.500" fontSize="sm" lineHeight="normal" mb={2}>
+            Incorrect email address or password.
+          </Text>
+        )}
         <VStack as="form" spacing={4} noValidate onSubmit={formik.handleSubmit}>
           <FormControl
             isRequired
