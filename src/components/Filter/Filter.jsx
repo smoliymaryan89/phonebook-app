@@ -15,7 +15,7 @@ const Filter = () => {
   return (
     <Box mb={5}>
       <FormControl>
-        <FormLabel fontWeight="400">
+        <FormLabel fontWeight="400" me={0}>
           Find contacts by name and phone number
         </FormLabel>
         <Input
